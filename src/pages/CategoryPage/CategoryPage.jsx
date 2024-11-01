@@ -1,76 +1,51 @@
-import {Breadcrumb, Divider, Space, Table, Tag} from 'antd';
+import {Breadcrumb, Button, Divider, Space, Table} from 'antd';
+import {useEffect, useState} from 'react';
+import {fetchAllCategories} from '../../api/category.api';
+import {DeleteOutlined} from '@ant-design/icons';
 
 export const CategoryPage = () => {
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    fetchAllCategories()
+      .then(categories => setCategories(categories))
+      .catch(error => console.log(error));
+  }, []);
 
   const columns = [
+    {
+      title: 'Id',
+      dataIndex: 'id',
+      key: 'id',
+      render: (text) => <a>{text}</a>,
+      width: '30%'
+    },
     {
       title: 'Name',
       dataIndex: 'name',
       key: 'name',
       render: (text) => <a>{text}</a>,
+      width: '50%'
     },
     {
-      title: 'Age',
-      dataIndex: 'age',
-      key: 'age',
-    },
-    {
-      title: 'Address',
-      dataIndex: 'address',
-      key: 'address',
-    },
-    {
-      title: 'Tags',
-      key: 'tags',
-      dataIndex: 'tags',
-      render: (_, { tags }) => (
-        <>
-          {tags.map((tag) => {
-            let color = tag.length > 5 ? 'geekblue' : 'green';
-            if (tag === 'loser') {
-              color = 'volcano';
-            }
-            return (
-              <Tag color={color} key={tag}>
-                {tag.toUpperCase()}
-              </Tag>
-            );
-          })}
-        </>
-      ),
-    },
-    {
-      title: 'Action',
-      key: 'action',
-      render: (_, record) => (
+      title: 'Edit',
+      key: 'edit',
+      render: () => (
         <Space size="middle">
-          <a>Invite {record.name}</a>
-          <a>Delete</a>
+
+          <a>Edit</a>
+
         </Space>
       ),
     },
-  ];
-  const data = [
+
     {
-      key: '1',
-      name: 'John Brown',
-      age: 32,
-      address: 'New York No. 1 Lake Park',
-      tags: ['nice', 'developer'],
-    },
-    {
-      key: '2',
-      name: 'Jim Green',
-      age: 42,
-      address: 'London No. 1 Lake Park',
-      tags: ['loser'],
-    },
-    {
-      key: '3',
-      name: 'Joe Black',
-      age: 32,
-      address: 'Sydney No. 1 Lake Park',
-      tags: ['cool', 'teacher'],
+      title: 'Delete',
+      key: 'delete',
+      render: () => (
+        <Button color={'danger'} shape="circle" variant="outlined" size={'small'} icon={<DeleteOutlined />}>
+        </Button>
+      ),
     },
   ];
 
@@ -88,7 +63,7 @@ export const CategoryPage = () => {
       <Divider />
 
       <div>
-        <Table columns={columns} dataSource={data} />
+        <Table columns={columns} dataSource={categories} />
       </div>
     </>
   );
