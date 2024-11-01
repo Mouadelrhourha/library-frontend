@@ -1,19 +1,18 @@
-
 import { Divider , Breadcrumb} from "antd";
-function BooksPage() {
+function BorrowPage() {
 
-    return ( 
+    return (
         <div>
-            <h5> Books Page  </h5> 
+            <h5> Borrows Page  </h5>
 
 
-        
+
         <Breadcrumb items={[
             {
                 title: 'Home',
             },
             {
-                title: 'Books',
+                title: 'Borrows',
             }
         ]}/>
 
@@ -22,4 +21,4 @@ function BooksPage() {
      );
 }
 
-export default BooksPage;
+export default BorrowPage;
