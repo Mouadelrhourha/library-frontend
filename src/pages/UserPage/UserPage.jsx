@@ -1,25 +1,22 @@
-
-import { Divider , Breadcrumb} from "antd";
+import { Divider , Breadcrumb} from 'antd';
 function UserPage() {
 
-    return ( 
-        <div>
-            <h5> User Page  </h5> 
+  return (
+    <div>
+      <h5> User Page  </h5>
 
+      <Breadcrumb items={[
+        {
+          title: 'Home',
+        },
+        {
+          title: 'User',
+        }
+      ]}/>
 
-        
-        <Breadcrumb items={[
-            {
-                title: 'Home',
-            },
-            {
-                title: 'User',
-            }
-        ]}/>
-
-        <Divider />
-        </div>
-     );
+      <Divider />
+    </div>
+  );
 }
 
 export default UserPage;

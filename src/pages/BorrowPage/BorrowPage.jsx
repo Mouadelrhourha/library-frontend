@@ -1,24 +1,22 @@
-import { Divider , Breadcrumb} from "antd";
+import { Divider , Breadcrumb} from 'antd';
 function BorrowPage() {
 
-    return (
-        <div>
-            <h5> Borrows Page  </h5>
+  return (
+    <div>
+      <h5> Borrows Page  </h5>
 
+      <Breadcrumb items={[
+        {
+          title: 'Home',
+        },
+        {
+          title: 'Borrows',
+        }
+      ]}/>
 
-
-        <Breadcrumb items={[
-            {
-                title: 'Home',
-            },
-            {
-                title: 'Borrows',
-            }
-        ]}/>
-
-        <Divider />
-        </div>
-     );
+      <Divider />
+    </div>
+  );
 }
 
 export default BorrowPage;
